@@ -208,6 +208,7 @@ The following KQL query was executed:
 ```kusto
 CloudoraSignIn_CL
 | count
+```
 ### 9. Initial User Sign-In Investigation
 
 After validating the dataset, the investigation moved to user authentication activity. Sign-in events associated with `daniel.reeve@cloudora.io` were reviewed to identify unusual authentication behavior.
