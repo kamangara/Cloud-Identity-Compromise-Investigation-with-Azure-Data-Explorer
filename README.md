@@ -163,6 +163,17 @@ Azure Data Explorer confirmed that the sign-in dataset was successfully ingested
 
 **Figure 04 — Sign-In Log Ingestion Success**
 
-The successful ingestion status confirmed that the sign-in dataset had been loaded into Azure Data Explorer and was ready for security analysis.
+The successful ingestion status confirmed that the sign-in dataset had been loaded into Azure Data Explorer and was ready for security analysis.### 5. Audit Log Data Ingestion
+
+After successfully ingesting the sign-in telemetry, the Cloudora audit logs were imported into Azure Data Explorer to support investigation of activities performed within the cloud environment.
+
+The audit dataset provides visibility into security-relevant actions such as authentication method changes, mailbox modifications, file access, application consent, and group membership changes.
+
+![Figure 05 - Audit Log CSV Upload](screenshots/Figure-05-Audit-CSV-Upload.png)
+
+**Figure 05 — Cloudora Audit Log Data Ingestion**
+
+The screenshot shows the audit CSV dataset being configured for ingestion into the `CloudoraAudit_CL` table. This dataset would later be correlated with suspicious authentication activity to reconstruct actions performed after account compromise.
+
 
 
