@@ -250,7 +250,9 @@ This provided a baseline of the locations and IP addresses associated with the a
 
 The results showed sign-in activity associated with multiple locations, including London, Austin, Manchester, and Lagos. The Lagos activity originated from `102.89.45.71` and appeared less frequently than the account's established sign-in locations.
 
-At this stage, the geographic difference alone was not treated as proof of compromise. Instead, the source IP was identified for further authentication analysis to determine whether its behavior was consistent with unauthorized access.### 11. Failed Authentication Analysis
+At this stage, the geographic difference alone was not treated as proof of compromise. Instead, the source IP was identified for further authentication analysis to determine whether its behavior was consistent with unauthorized access.
+
+### 11. Failed Authentication Analysis
 
 The investigation was expanded beyond a single user to identify IP addresses generating failed authentication attempts across the Cloudora environment.
 
