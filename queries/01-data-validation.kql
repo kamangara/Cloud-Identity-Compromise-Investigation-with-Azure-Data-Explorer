@@ -1,0 +1,15 @@
+// Cloudora Identity Compromise Investigation
+// Query 01: Dataset Validation
+// Purpose: Verify that the sign-in and audit datasets were successfully ingested.
+
+// Count sign-in records
+CloudoraSignIn_CL
+| count
+
+// Preview sign-in telemetry
+CloudoraSignIn_CL
+| take 10
+
+// Preview audit telemetry
+CloudoraAudit_CL
+| take 10
