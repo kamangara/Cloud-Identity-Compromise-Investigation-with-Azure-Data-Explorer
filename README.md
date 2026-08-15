@@ -173,7 +173,18 @@ The audit dataset provides visibility into security-relevant actions such as aut
 
 **Figure 05 — Cloudora Audit Log Data Ingestion**
 
-The screenshot shows the audit CSV dataset being configured for ingestion into the `CloudoraAudit_CL` table. This dataset would later be correlated with suspicious authentication activity to reconstruct actions performed after account compromise.
+The screenshot shows the audit CSV dataset being configured for ingestion into the `CloudoraAudit_CL` table. This dataset would later be correlated with suspicious authentication activity to reconstruct actions performed after account compromise.### 6. Audit Log Schema Mapping
+
+The audit log schema was reviewed to ensure that the CSV fields were correctly mapped to the appropriate columns and data types in Azure Data Explorer.
+
+Key fields such as `TimeGenerated`, `OperationName`, `InitiatedBy`, `TargetUserPrincipalName`, `IPAddress`, and `Details` were validated to ensure that security events could be accurately queried and correlated during the investigation.
+
+![Figure 06 - Audit Log Schema Mapping](screenshots/Figure-06-Audit-Schema-Mapping.png)
+
+**Figure 06 — Audit Log Schema Mapping**
+
+The schema mapping confirmed that the audit telemetry was correctly structured for KQL analysis. This provided the fields required to correlate suspicious source IP addresses with account changes, mailbox activity, file access, application consent, and other post-compromise actions.
+
 
 
 
