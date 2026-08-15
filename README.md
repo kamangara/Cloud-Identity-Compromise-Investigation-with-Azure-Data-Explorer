@@ -143,4 +143,15 @@ The inspection confirmed that important authentication attributes such as geogra
 
 **Figure 02 — Sign-In Data Inspection**
 
-The data preview was used to validate the structure and quality of the sign-in telemetry before proceeding with the investigation.
+The data preview was used to validate the structure and quality of the sign-in telemetry before proceeding with the investigation.### 3. Sign-In Schema Validation
+
+The sign-in log schema was reviewed to ensure that each CSV field was mapped to the appropriate column and data type in Azure Data Explorer.
+
+This validation was important because accurate field mapping ensures that KQL queries can correctly analyze timestamps, user identities, IP addresses, geographic locations, authentication results, devices, and applications.
+
+![Figure 03 - Sign-In Schema Validation](screenshots/Figure-03-SignIn-Schema-Validation.png)
+
+**Figure 03 — Sign-In Schema Validation**
+
+The schema review confirmed that the sign-in fields were correctly structured and mapped, preparing the `CloudoraSignIn_CL` table for reliable KQL analysis.
+
