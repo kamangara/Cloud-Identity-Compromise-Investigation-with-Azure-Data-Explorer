@@ -1,0 +1,19 @@
+// Cloudora Identity Compromise Investigation
+// Query 02: User Sign-In Investigation
+// Purpose: Review Daniel Reeve's authentication history and establish IP/location activity.
+
+// Full sign-in timeline for the affected account
+CloudoraSignIn_CL
+| where UserPrincipalName == "daniel.reeve@cloudora.io"
+| project TimeGenerated, AppDisplayName, IPAddress, City, Country, ResultType, ResultDescription
+| order by TimeGenerated asc
+
+// Summarize sign-ins by location and IP address
+CloudoraSignIn_CL
+| where UserPrincipalName contains "daniel"
+| summarize
+    SignIns=count(),
+    FirstSeen=min(TimeGenerated),
+    LastSeen=max(TimeGenerated)
+    by City, Country, IPAddress
+| order by SignIns desc
