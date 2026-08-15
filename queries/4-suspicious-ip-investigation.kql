@@ -1,0 +1,25 @@
+// Cloudora Identity Compromise Investigation
+// Query 04: Suspicious IP Investigation
+// Purpose: Reconstruct authentication activity associated with the suspicious source IP.
+
+// Show all authentication events from the suspicious IP
+CloudoraSignIn_CL
+| where IPAddress == "102.89.45.71"
+| project
+    TimeGenerated,
+    UserPrincipalName,
+    AppDisplayName,
+    IPAddress,
+    City,
+    Country,
+    ResultType,
+    ResultDescription
+| order by TimeGenerated asc
+
+// Quantify failure-to-success activity from the suspicious IP range
+CloudoraSignIn_CL
+| where IPAddress startswith "102.89."
+| summarize
+    Attempts=count()
+    by bin(TimeGenerated, 1d), ResultType
+| order by TimeGenerated asc
