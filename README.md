@@ -94,4 +94,31 @@ The audit logs were used to correlate activity occurring after suspicious authen
 
 > **Lab Note:** The Cloudora datasets used in this project are synthetic and were created for hands-on security investigation and KQL practice. No production user accounts or organizational data are included.
 
+## Investigation Methodology
+
+The investigation followed a structured SOC incident investigation process to move from initial detection to confirmation and scope assessment.
+
+1. **Data Ingestion and Validation**  
+   Imported the Cloudora sign-in and audit datasets into Azure Data Explorer and verified that the logs were available for analysis.
+
+2. **Authentication Baseline Analysis**  
+   Analyzed user sign-in activity, IP addresses, geographic locations, and authentication results to understand normal and abnormal behavior.
+
+3. **Suspicious Activity Identification**  
+   Investigated anomalous authentication activity and identified the source IP associated with the suspicious sign-in attempts.
+
+4. **Authentication Timeline Analysis**  
+   Reconstructed the sequence of failed and successful authentication events to determine whether unauthorized access was achieved.
+
+5. **Audit Log Correlation**  
+   Pivoted from sign-in telemetry to audit logs using the suspicious source IP to investigate activity occurring after authentication.
+
+6. **Post-Compromise Analysis**  
+   Reviewed authentication changes, mailbox modifications, email access, file access, application consent, and group membership activity.
+
+7. **Scope Assessment**  
+   Searched the wider sign-in dataset to determine whether the suspicious infrastructure successfully authenticated to additional Cloudora accounts.
+
+8. **Incident Response Recommendations**  
+   Developed containment, remediation, and verification recommendations based on the investigation findings.
 
