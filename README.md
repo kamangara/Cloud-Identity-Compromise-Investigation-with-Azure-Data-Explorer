@@ -129,7 +129,7 @@ The investigation followed a structured SOC incident investigation process to mo
 
 The investigation began by importing the synthetic Cloudora sign-in logs into Azure Data Explorer. The CSV dataset was configured for ingestion into the `CloudoraSignIn_CL` table within the investigation database.
 
-This provided the authentication telemetry required for subsequent analysis of user accounts, source IP addresses, geographic locations, applications, and authentication results.![Figure 01 - Cloudora Sign-In Log Data Ingestion](screenshots/Figure-001%20SignIn-log%20-ingestion.png.png)
+This provided the authentication telemetry required for subsequent analysis of user accounts, source IP addresses, geographic locations, applications, and authentication results.!![Figure 01 - Cloudora Sign-In Log Data Ingestion](screenshots/Figure-001%20SignIn-log%20-ingestion.png)
 **Figure 01 — Cloudora Sign-In Log Data Ingestion**
 
 The screenshot shows the sign-in CSV being configured for ingestion into Azure Data Explorer and mapped to the `CloudoraSignIn_CL` table.
