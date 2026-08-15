@@ -422,7 +422,35 @@ Within the available sign-in telemetry, successful authentication from the inves
 
 No additional successfully authenticated Cloudora identities from this suspicious IP range were identified in the analyzed dataset.
 
-This helped establish the observed scope of the incident while avoiding the assumption that the absence of additional successful sign-ins from this IP range proves that no other compromise occurred through different infrastructure.
+This helped establish the observed scope of the incident while avoiding the assumption that the absence of additional successful sign-ins from this IP range proves that no other compromise occurred through different infrastructure.---
+
+## Key Investigation Findings
+
+The investigation identified evidence consistent with a successful compromise of the Cloudora account `daniel.reeve@cloudora.io`.
+
+### Confirmed Findings
+
+- **Affected account:** `daniel.reeve@cloudora.io`
+- **Suspicious source IP:** `102.89.45.71`
+- **Observed location:** Lagos, Nigeria
+- **Authentication pattern:** Multiple failed authentication attempts followed by successful sign-ins.
+- **Successful unauthorized access:** Successful authentication events were observed after the failed attempts.
+- **Authentication modification:** A new authentication method was added to the affected account.
+- **Defense evasion:** An inbox rule was created to move security notification emails.
+- **Mailbox modification:** External email forwarding was configured.
+- **Mailbox access:** Inbox, Sent Items, and executive correspondence were accessed.
+- **Sensitive file access:** `/Deals/Biggest_Enterprise_Deal.xlsx` was accessed.
+- **Application consent:** `Mail.Read` permission was granted to `Cloud Sync Utility`.
+- **Persistence / access modification:** The affected account was added to a legacy remote-access group.
+- **Observed incident scope:** No additional successful Cloudora account authentications from the investigated `102.89.*` range were identified within the available sign-in telemetry.
+
+### Incident Assessment
+
+The combination of repeated authentication failures, subsequent successful authentication, and security-sensitive audit activity originating from the same suspicious infrastructure provides strong evidence of an account compromise.
+
+The activity did not end with account access. The post-authentication actions indicate attempts to maintain access, manipulate email behavior, access potentially sensitive information, and modify account or application permissions.
+
+Based on the available telemetry, the incident should therefore be treated as a **confirmed cloud identity compromise requiring immediate containment and remediation**.
 
 
 
