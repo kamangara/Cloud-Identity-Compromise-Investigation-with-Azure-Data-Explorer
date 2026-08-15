@@ -1,0 +1,58 @@
+TimeGenerated,OperationName,InitiatedBy,TargetUserPrincipalName,Result,IPAddress,Details
+2026-08-03T14:14:00.000Z,MailItemsAccessed,hugo.marsh@cloudora.io,noah.bishop@cloudora.io,Success,203.0.113.12,No security-relevant change
+2026-08-03T15:38:00.000Z,Add member to group,noah.bishop@cloudora.io,jack.morgan@cloudora.io,Success,203.0.113.15,Routine administrative activity
+2026-08-03T23:35:00.000Z,MailItemsAccessed,ethan.wells@cloudora.io,isla.grant@cloudora.io,Success,198.51.100.24,No security-relevant change
+2026-08-04T01:31:00.000Z,FileAccessed,jack.morgan@cloudora.io,seth.lane@cloudora.io,Success,203.0.113.10,No security-relevant change
+2026-08-04T08:47:00.000Z,Add member to group,sofia.marino@cloudora.io,seth.lane@cloudora.io,Success,203.0.113.17,Authorized access
+2026-08-04T09:22:00.000Z,UserLoggedIn,chloe.price@cloudora.io,lucas.ford@cloudora.io,Success,203.0.113.17,Authorized access
+2026-08-04T12:56:00.000Z,Update user,chloe.price@cloudora.io,cole.burke@cloudora.io,Success,198.51.100.20,Normal user activity
+2026-08-04T14:21:00.000Z,UserLoggedIn,ethan.wells@cloudora.io,finn.gale@cloudora.io,Success,203.0.113.12,Authorized access
+2026-08-04T17:38:00.000Z,UserLoggedIn,jack.morgan@cloudora.io,daniel.reeve@cloudora.io,Success,198.51.100.24,Routine administrative activity
+2026-08-04T18:46:00.000Z,UserLoggedIn,lucas.ford@cloudora.io,olivia.chen@cloudora.io,Success,203.0.113.13,Routine administrative activity
+2026-08-05T05:32:00.000Z,FileAccessed,isla.grant@cloudora.io,finn.gale@cloudora.io,Success,203.0.113.17,No security-relevant change
+2026-08-05T06:56:00.000Z,FileAccessed,ava.khan@cloudora.io,daniel.reeve@cloudora.io,Success,203.0.113.12,No security-relevant change
+2026-08-05T08:53:00.000Z,UserLoggedIn,jack.morgan@cloudora.io,noah.bishop@cloudora.io,Success,203.0.113.15,Normal user activity
+2026-08-05T13:27:00.000Z,Add member to group,olivia.chen@cloudora.io,isla.grant@cloudora.io,Success,192.0.2.32,Authorized access
+2026-08-05T16:21:00.000Z,Update user,noah.bishop@cloudora.io,chloe.price@cloudora.io,Success,198.51.100.24,Normal user activity
+2026-08-05T19:42:00.000Z,UserLoggedIn,isla.grant@cloudora.io,dina.said@cloudora.io,Success,203.0.113.15,Normal user activity
+2026-08-05T20:01:00.000Z,Add member to group,chloe.price@cloudora.io,isla.grant@cloudora.io,Success,203.0.113.15,No security-relevant change
+2026-08-06T03:39:00.000Z,MailItemsAccessed,sofia.marino@cloudora.io,hugo.marsh@cloudora.io,Success,192.0.2.30,Normal user activity
+2026-08-06T03:48:00.000Z,UserLoggedIn,jack.morgan@cloudora.io,liam.turner@cloudora.io,Success,203.0.113.13,Routine administrative activity
+2026-08-06T07:46:00.000Z,UserLoggedIn,finn.gale@cloudora.io,mira.shah@cloudora.io,Success,203.0.113.15,Routine administrative activity
+2026-08-06T09:20:00.000Z,FileAccessed,sofia.marino@cloudora.io,ethan.wells@cloudora.io,Success,203.0.113.13,Routine administrative activity
+2026-08-06T10:51:00.000Z,MailItemsAccessed,lucas.ford@cloudora.io,mira.shah@cloudora.io,Success,198.51.100.24,Normal user activity
+2026-08-06T12:53:00.000Z,Update user,hugo.marsh@cloudora.io,chloe.price@cloudora.io,Success,192.0.2.30,No security-relevant change
+2026-08-06T16:57:00.000Z,UserLoggedIn,noah.bishop@cloudora.io,cole.burke@cloudora.io,Success,192.0.2.31,Authorized access
+2026-08-06T19:10:00.000Z,MailItemsAccessed,olivia.chen@cloudora.io,ethan.wells@cloudora.io,Success,192.0.2.30,Routine administrative activity
+2026-08-06T21:58:00.000Z,UserLoggedIn,mira.shah@cloudora.io,jack.morgan@cloudora.io,Success,203.0.113.10,Normal user activity
+2026-08-06T23:03:00.000Z,Add member to group,olivia.chen@cloudora.io,olivia.chen@cloudora.io,Success,192.0.2.31,No security-relevant change
+2026-08-07T04:34:00.000Z,Add member to group,seth.lane@cloudora.io,lucas.ford@cloudora.io,Success,198.51.100.24,Normal user activity
+2026-08-07T13:45:00.000Z,Update user,dina.said@cloudora.io,liam.turner@cloudora.io,Success,192.0.2.32,No security-relevant change
+2026-08-07T20:07:00.000Z,MailItemsAccessed,lucas.ford@cloudora.io,ava.khan@cloudora.io,Success,203.0.113.12,Authorized access
+2026-08-07T20:22:00.000Z,Add member to group,dina.said@cloudora.io,sofia.marino@cloudora.io,Success,203.0.113.15,Authorized access
+2026-08-07T22:01:00.000Z,FileAccessed,lucas.ford@cloudora.io,emma.hayes@cloudora.io,Success,192.0.2.31,No security-relevant change
+2026-08-08T01:27:00.000Z,UserLoggedIn,sofia.marino@cloudora.io,isla.grant@cloudora.io,Success,203.0.113.17,No security-relevant change
+2026-08-08T01:33:00.000Z,MailItemsAccessed,dina.said@cloudora.io,ava.khan@cloudora.io,Success,203.0.113.12,Routine administrative activity
+2026-08-08T01:56:00.000Z,MailItemsAccessed,cole.burke@cloudora.io,liam.turner@cloudora.io,Success,203.0.113.12,Normal user activity
+2026-08-08T02:58:00.000Z,Update user,cole.burke@cloudora.io,ava.khan@cloudora.io,Success,203.0.113.17,No security-relevant change
+2026-08-08T12:28:00.000Z,MailItemsAccessed,hugo.marsh@cloudora.io,lucas.ford@cloudora.io,Success,203.0.113.17,Routine administrative activity
+2026-08-08T12:52:00.000Z,MailItemsAccessed,lucas.ford@cloudora.io,liam.turner@cloudora.io,Success,203.0.113.13,Normal user activity
+2026-08-08T13:53:00.000Z,FileAccessed,daniel.reeve@cloudora.io,mira.shah@cloudora.io,Success,203.0.113.17,No security-relevant change
+2026-08-08T16:25:00.000Z,FileAccessed,liam.turner@cloudora.io,noah.bishop@cloudora.io,Success,203.0.113.17,Authorized access
+2026-08-08T17:46:00.000Z,UserLoggedIn,cole.burke@cloudora.io,daniel.reeve@cloudora.io,Success,192.0.2.31,Normal user activity
+2026-08-09T05:46:00.000Z,UserLoggedIn,hugo.marsh@cloudora.io,daniel.reeve@cloudora.io,Success,203.0.113.10,Routine administrative activity
+2026-08-09T10:56:00.000Z,FileAccessed,lucas.ford@cloudora.io,jack.morgan@cloudora.io,Success,203.0.113.12,Authorized access
+2026-08-09T14:24:00.000Z,MailItemsAccessed,hugo.marsh@cloudora.io,seth.lane@cloudora.io,Success,192.0.2.30,Normal user activity
+2026-08-09T15:37:00.000Z,Update user,mira.shah@cloudora.io,ava.khan@cloudora.io,Success,198.51.100.20,No security-relevant change
+2026-08-09T17:22:00.000Z,MailItemsAccessed,jack.morgan@cloudora.io,liam.turner@cloudora.io,Success,203.0.113.12,Normal user activity
+2026-08-10T02:56:00.000Z,FileAccessed,emma.hayes@cloudora.io,olivia.chen@cloudora.io,Success,203.0.113.10,No security-relevant change
+2026-08-10T03:14:22.000Z,Update authentication method,daniel.reeve@cloudora.io,daniel.reeve@cloudora.io,Success,102.89.45.71,Added a new authentication method to the CEO account
+2026-08-10T03:16:03.000Z,Set-InboxRule,daniel.reeve@cloudora.io,daniel.reeve@cloudora.io,Success,102.89.45.71,Created rule 'RSS Feeds' to move security notification emails to RSS Feeds
+2026-08-10T03:18:41.000Z,Set-Mailbox,daniel.reeve@cloudora.io,daniel.reeve@cloudora.io,Success,102.89.45.71,Enabled external forwarding to finance.archive@protonmail.com
+2026-08-10T03:21:05.000Z,MailItemsAccessed,daniel.reeve@cloudora.io,daniel.reeve@cloudora.io,Success,102.89.45.71,Accessed mailbox items in Inbox and Sent Items
+2026-08-10T03:23:49.000Z,FileAccessed,daniel.reeve@cloudora.io,daniel.reeve@cloudora.io,Success,102.89.45.71,Accessed SharePoint file /Deals/Biggest_Enterprise_Deal.xlsx
+2026-08-10T03:27:12.000Z,Consent to application,daniel.reeve@cloudora.io,daniel.reeve@cloudora.io,Success,102.89.45.71,Granted delegated Mail.Read permission to application 'Cloud Sync Utility'
+2026-08-10T03:31:26.000Z,Add member to group,daniel.reeve@cloudora.io,daniel.reeve@cloudora.io,Success,102.89.45.71,Added CEO account to legacy remote-access group
+2026-08-10T03:38:17.000Z,MailItemsAccessed,daniel.reeve@cloudora.io,daniel.reeve@cloudora.io,Success,102.89.45.71,Read executive deal correspondence
+2026-08-10T07:25:00.000Z,UserLoggedIn,dina.said@cloudora.io,isla.grant@cloudora.io,Success,203.0.113.12,Routine administrative activity
+2026-08-10T08:55:00.000Z,SecurityAlert,it.security@cloudora.io,daniel.reeve@cloudora.io,Success,203.0.113.10,"IT flagged suspicious sign-in activity from Lagos, Nigeria"
