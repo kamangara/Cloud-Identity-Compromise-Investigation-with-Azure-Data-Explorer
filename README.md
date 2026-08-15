@@ -368,7 +368,7 @@ CloudoraSignIn_CL
 
 The results identified four failed authentication events (`50126`) and four successful authentication events (`0`) associated with the suspicious source range.
 
-Combined with the chronological sign-in evidence, this established a clear failure-to-success pattern. The investigation therefore pivoted to the audit logs to determine what occurred after successful authentication.
+Combined with the chronological sign-in evidence, this demonstrated a failure-to-success authentication pattern requiring further investigation. The investigation therefore pivoted to the audit logs to determine what occurred after successful authentication.
 
 
 ### 17. Post-Compromise Audit Investigation
