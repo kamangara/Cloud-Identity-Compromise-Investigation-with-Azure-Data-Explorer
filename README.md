@@ -143,7 +143,8 @@ The inspection confirmed that important authentication attributes such as geogra
 
 **Figure 02 — Sign-In Data Inspection**
 
-The data preview was used to validate the structure and quality of the sign-in telemetry before proceeding with the investigation.### 3. Sign-In Schema Validation
+The data preview was used to validate the structure and quality of the sign-in telemetry before proceeding with the investigation.
+### 3. Sign-In Schema Validation
 
 The sign-in log schema was reviewed to ensure that each CSV field was mapped to the appropriate column and data type in Azure Data Explorer.
 
@@ -153,7 +154,8 @@ This validation was important because accurate field mapping ensures that KQL qu
 
 **Figure 03 — Sign-In Schema Validation**
 
-The schema review confirmed that the sign-in fields were correctly structured and mapped, preparing the `CloudoraSignIn_CL` table for reliable KQL analysis.### 4. Sign-In Log Ingestion Validation
+The schema review confirmed that the sign-in fields were correctly structured and mapped, preparing the `CloudoraSignIn_CL` table for reliable KQL analysis.
+### 4. Sign-In Log Ingestion Validation
 
 After validating the schema and field mappings, the ingestion process was completed in Azure Data Explorer.
 
@@ -163,7 +165,8 @@ Azure Data Explorer confirmed that the sign-in dataset was successfully ingested
 
 **Figure 04 — Sign-In Log Ingestion Success**
 
-The successful ingestion status confirmed that the sign-in dataset had been loaded into Azure Data Explorer and was ready for security analysis.### 5. Audit Log Data Ingestion
+The successful ingestion status confirmed that the sign-in dataset had been loaded into Azure Data Explorer and was ready for security analysis.
+### 5. Audit Log Data Ingestion
 
 After successfully ingesting the sign-in telemetry, the Cloudora audit logs were imported into Azure Data Explorer to support investigation of activities performed within the cloud environment.
 
@@ -173,7 +176,8 @@ The audit dataset provides visibility into security-relevant actions such as aut
 
 **Figure 05 — Cloudora Audit Log Data Ingestion**
 
-The screenshot shows the audit CSV dataset being configured for ingestion into the `CloudoraAudit_CL` table. This dataset would later be correlated with suspicious authentication activity to reconstruct actions performed after account compromise.### 6. Audit Log Schema Mapping
+The screenshot shows the audit CSV dataset being configured for ingestion into the `CloudoraAudit_CL` table. This dataset would later be correlated with suspicious authentication activity to reconstruct actions performed after account compromise.
+### 6. Audit Log Schema Mapping
 
 The audit log schema was reviewed to ensure that the CSV fields were correctly mapped to the appropriate columns and data types in Azure Data Explorer.
 
@@ -183,7 +187,8 @@ Key fields such as `TimeGenerated`, `OperationName`, `InitiatedBy`, `TargetUserP
 
 **Figure 06 — Audit Log Schema Mapping**
 
-The schema mapping confirmed that the audit telemetry was correctly structured for KQL analysis. This provided the fields required to correlate suspicious source IP addresses with account changes, mailbox activity, file access, application consent, and other post-compromise actions.### 7. Audit Log Ingestion Validation
+The schema mapping confirmed that the audit telemetry was correctly structured for KQL analysis. This provided the fields required to correlate suspicious source IP addresses with account changes, mailbox activity, file access, application consent, and other post-compromise actions.
+### 7. Audit Log Ingestion Validation
 
 After validating the audit log schema and field mappings, the ingestion process was completed in Azure Data Explorer.
 
