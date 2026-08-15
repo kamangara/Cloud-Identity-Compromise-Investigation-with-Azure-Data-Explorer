@@ -451,7 +451,38 @@ The combination of repeated authentication failures, subsequent successful authe
 The activity did not end with account access. The post-authentication actions indicate attempts to maintain access, manipulate email behavior, access potentially sensitive information, and modify account or application permissions.
 
 Based on the available telemetry, the incident should therefore be treated as a **confirmed cloud identity compromise requiring immediate containment and remediation**.
+---
 
+## Incident Timeline
+
+Correlation of the sign-in and audit telemetry produced the following chronological sequence of events on **10 August 2026**.
+
+| Time | Event | Investigation Significance |
+|---|---|---|
+| **02:58** | Failed authentication from `102.89.45.71` | First observed failed attempt from the suspicious source. |
+| **03:01** | Failed authentication | Repeated credential failure against the affected account. |
+| **03:04** | Failed authentication | Continued unsuccessful authentication activity. |
+| **03:07** | Failed authentication | Fourth observed failed authentication attempt. |
+| **03:12:08** | **Successful authentication** | First observed successful authentication from the suspicious IP following repeated failures. |
+| **03:13:31** | **Successful authentication** | Additional successful access from the same suspicious source. |
+| **03:14:22** | Authentication method updated | A new authentication method was added to the affected account. |
+| **03:16:03** | Inbox rule created | Rule named `RSS Feeds` was created to move security notification emails. |
+| **03:17:04** | Successful authentication | Further successful access from the suspicious source. |
+| **03:18:41** | External forwarding enabled | Mail forwarding was configured to `finance.archive@protonmail.com`. |
+| **03:21:05** | Mailbox items accessed | Inbox and Sent Items were accessed. |
+| **03:23:49** | SharePoint file accessed | `/Deals/Biggest_Enterprise_Deal.xlsx` was accessed. |
+| **03:24:46** | Successful authentication | Additional successful authentication from the suspicious source. |
+| **03:27:12** | Application consent granted | `Mail.Read` delegated permission was granted to `Cloud Sync Utility`. |
+| **03:31:26** | Group membership modified | The affected account was added to a legacy remote-access group. |
+| **03:38:17** | Executive correspondence accessed | Executive deal-related email correspondence was accessed. |
+
+### Timeline Analysis
+
+The timeline shows a progression from repeated authentication failures to successful account access and subsequent security-sensitive activity.
+
+The close temporal relationship between successful authentication from `102.89.45.71` and the subsequent audit events strengthens the assessment that the successful authentication represented unauthorized access rather than an isolated geographic anomaly.
+
+The post-authentication activity also indicates that the incident extended beyond initial account access to include account modification, mailbox manipulation, potential persistence mechanisms, application permission changes, and access to potentially sensitive business information.
 
 
 
