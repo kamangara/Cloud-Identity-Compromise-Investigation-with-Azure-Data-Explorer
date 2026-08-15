@@ -44,8 +44,7 @@ The investigation was conducted to answer the following key security questions:
 
 8. **Develop response recommendations**  
    Recommend appropriate containment, remediation, and verification actions based on the investigation findings.
-   
-   ## Tools & Technologies Used
+## Tools & Technologies Used
 
 | Tool / Technology | Purpose |
 |---|---|
