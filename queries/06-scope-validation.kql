@@ -1,0 +1,26 @@
+// Cloudora Identity Compromise Investigation
+// Query 06: Scope Validation
+// Purpose: Determine whether the suspicious IP range successfully authenticated to additional Cloudora accounts.
+
+// Identify successful authentications from the suspicious IP range
+CloudoraSignIn_CL
+| where IPAddress startswith "102.89." and ResultType == "0"
+| summarize
+    SuccessfulSignIns=count(),
+    FirstSeen=min(TimeGenerated),
+    LastSeen=max(TimeGenerated)
+    by UserPrincipalName, IPAddress
+| order by FirstSeen asc
+
+// Show the exact successful authentication events
+CloudoraSignIn_CL
+| where IPAddress startswith "102.89." and ResultType == "0"
+| project
+    TimeGenerated,
+    UserPrincipalName,
+    AppDisplayName,
+    IPAddress,
+    City,
+    Country,
+    ResultType
+| order by TimeGenerated asc
