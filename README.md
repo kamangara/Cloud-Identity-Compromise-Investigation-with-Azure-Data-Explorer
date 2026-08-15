@@ -133,3 +133,14 @@ This provided the authentication telemetry required for subsequent analysis of u
 **Figure 01 — Cloudora Sign-In Log Data Ingestion**
 
 The screenshot shows the sign-in CSV being configured for ingestion into Azure Data Explorer and mapped to the `CloudoraSignIn_CL` table.
+### 2. Sign-In Data Inspection
+
+After configuring the sign-in log ingestion, the dataset was previewed to verify that the CSV records were parsed correctly before completing the ingestion process.
+
+The inspection confirmed that important authentication attributes such as geographic location, authentication result, operating system, and browser information were present and available for analysis.
+
+![Figure 02 - Sign-In Data Inspection](screenshots/Figure-02-SignIn-Data-Inspection.png)
+
+**Figure 02 — Sign-In Data Inspection**
+
+The data preview was used to validate the structure and quality of the sign-in telemetry before proceeding with the investigation.
