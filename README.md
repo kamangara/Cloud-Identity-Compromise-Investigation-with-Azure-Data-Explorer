@@ -153,5 +153,16 @@ This validation was important because accurate field mapping ensures that KQL qu
 
 **Figure 03 — Sign-In Schema Validation**
 
-The schema review confirmed that the sign-in fields were correctly structured and mapped, preparing the `CloudoraSignIn_CL` table for reliable KQL analysis.
+The schema review confirmed that the sign-in fields were correctly structured and mapped, preparing the `CloudoraSignIn_CL` table for reliable KQL analysis.### 4. Sign-In Log Ingestion Validation
+
+After validating the schema and field mappings, the ingestion process was completed in Azure Data Explorer.
+
+Azure Data Explorer confirmed that the sign-in dataset was successfully ingested into the `CloudoraSignIn_CL` table. This ensured that the authentication telemetry was available for querying and further investigation using KQL.
+
+![Figure 04 - Sign-In Ingestion Success](screenshots/Figure-04-SignIn-Ingestion-Success.png)
+
+**Figure 04 — Sign-In Log Ingestion Success**
+
+The successful ingestion status confirmed that the sign-in dataset had been loaded into Azure Data Explorer and was ready for security analysis.
+
 
