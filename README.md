@@ -228,6 +228,28 @@ The results provided a chronological view of the account's authentication activi
 **Figure 09 — Initial Sign-In Investigation**
 
 Reviewing the account's sign-in history revealed authentication activity from multiple locations and IP addresses. This required further analysis to distinguish expected user activity from potentially unauthorized access.
+### 10. IP Address and Geographic Location Analysis
+
+To better understand the account's authentication behavior, Daniel Reeve's sign-in activity was grouped by source IP address and geographic location.
+
+The following KQL query was used:
+
+```kusto
+CloudoraSignIn_CL
+| where UserPrincipalName contains "daniel"
+| summarize SignIn=count(), FirstSeen=min(TimeGenerated), LastSeen=max(TimeGenerated) by City, Country, IPAddress
+| order by SignIn desc
+```
+
+This provided a baseline of the locations and IP addresses associated with the account and made it easier to identify activity that required further investigation.
+
+![Figure 10 - Daniel IP and Location Analysis](screenshots/Figure-10-Daniel-IP-Location-Analysis.png)
+
+**Figure 10 — User IP Address and Geographic Location Analysis**
+
+The results showed sign-in activity associated with multiple locations, including London, Austin, Manchester, and Lagos. The Lagos activity originated from `102.89.45.71` and appeared less frequently than the account's established sign-in locations.
+
+At this stage, the geographic difference alone was not treated as proof of compromise. Instead, the source IP was identified for further authentication analysis to determine whether its behavior was consistent with unauthorized access.
 
 
 
