@@ -1,0 +1,36 @@
+// Cloudora Identity Compromise Investigation
+// Query 05: Post-Compromise Audit Analysis
+// Purpose: Correlate suspicious authentication infrastructure with audit activity
+//          to identify actions performed after successful account access.
+
+CloudoraAudit_CL
+| where IPAddress startswith "102.89."
+| project
+    TimeGenerated,
+    OperationName,
+    InitiatedBy,
+    TargetUserPrincipalName,
+    IPAddress,
+    Details
+| order by TimeGenerated asc
+
+// Focus on security-sensitive post-compromise actions
+CloudoraAudit_CL
+| where IPAddress startswith "102.89."
+| where OperationName in (
+    "Update authentication method",
+    "Set-InboxRule",
+    "Set-Mailbox",
+    "Consent to application",
+    "Add member to group",
+    "MailItemsAccessed",
+    "FileAccessed"
+)
+| project
+    TimeGenerated,
+    OperationName,
+    InitiatedBy,
+    TargetUserPrincipalName,
+    IPAddress,
+    Details
+| order by TimeGenerated asc
