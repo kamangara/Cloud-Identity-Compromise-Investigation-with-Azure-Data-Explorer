@@ -208,7 +208,26 @@ The following KQL query was executed:
 ```kusto
 CloudoraSignIn_CL
 | count
+### 9. Initial User Sign-In Investigation
 
+After validating the dataset, the investigation moved to user authentication activity. Sign-in events associated with `daniel.reeve@cloudora.io` were reviewed to identify unusual authentication behavior.
+
+The following KQL query was used to retrieve Daniel Reeve's authentication history:
+
+```kusto
+CloudoraSignIn_CL
+| where UserPrincipalName == "daniel.reeve@cloudora.io"
+| project TimeGenerated, AppDisplayName, IPAddress, City, Country, ResultType, ResultDescription
+| order by TimeGenerated asc
+```
+
+The results provided a chronological view of the account's authentication activity, including source IP addresses, geographic locations, applications accessed, and authentication outcomes.
+
+![Figure 09 - Daniel Reeve Sign-In Investigation](screenshots/Figure-09-Daniel-SignIn-Investigation.png)
+
+**Figure 09 — Initial Sign-In Investigation**
+
+Reviewing the account's sign-in history revealed authentication activity from multiple locations and IP addresses. This required further analysis to distinguish expected user activity from potentially unauthorized access.
 
 
 
