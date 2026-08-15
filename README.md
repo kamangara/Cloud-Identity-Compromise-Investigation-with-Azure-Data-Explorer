@@ -183,7 +183,18 @@ Key fields such as `TimeGenerated`, `OperationName`, `InitiatedBy`, `TargetUserP
 
 **Figure 06 — Audit Log Schema Mapping**
 
-The schema mapping confirmed that the audit telemetry was correctly structured for KQL analysis. This provided the fields required to correlate suspicious source IP addresses with account changes, mailbox activity, file access, application consent, and other post-compromise actions.
+The schema mapping confirmed that the audit telemetry was correctly structured for KQL analysis. This provided the fields required to correlate suspicious source IP addresses with account changes, mailbox activity, file access, application consent, and other post-compromise actions.### 7. Audit Log Ingestion Validation
+
+After validating the audit log schema and field mappings, the ingestion process was completed in Azure Data Explorer.
+
+Azure Data Explorer confirmed that the audit dataset was successfully ingested into the `CloudoraAudit_CL` table. The environment now contained both authentication and audit telemetry required for the investigation.
+
+![Figure 07 - Audit Log Ingestion Success](screenshots/Figure-07-Audit-Ingestion-Success.png)
+
+**Figure 07 — Audit Log Ingestion Success**
+
+The successful ingestion confirmed that the audit telemetry was available for KQL analysis and could be correlated with the sign-in logs during the investigation.
+
 
 
 
