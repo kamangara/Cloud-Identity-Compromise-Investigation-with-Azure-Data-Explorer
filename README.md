@@ -548,7 +548,76 @@ The investigation provided sufficient evidence to identify the affected identity
 
 The recommended response follows the incident lifecycle from **containment → remediation → verification**, ensuring that immediate attacker access is addressed while also removing persistence mechanisms and validating that the environment has returned to an expected security state.
 
-> **Lab Limitation:** Containment and remediation actions were documented as recommended response procedures rather than executed against a production identity environment. Azure Data Explorer was used for log ingestion, querying, correlation, investigation, and validation of the available telemetry.
+> **Lab Limitation:** Containment and remediation actions were documented as recommended response procedures rather than executed against a production identity environment. Azure Data Explorer was used for log ingestion, querying, correlation, investigation, and validation of the available telemetry.---
+
+## MITRE ATT&CK Mapping
+
+The observed activity was mapped to relevant MITRE ATT&CK techniques to demonstrate how the investigation findings relate to recognized adversary behaviors.
+
+| Observed Activity | MITRE ATT&CK Technique | Technique ID | Evidence |
+|---|---|---|---|
+| Repeated authentication failures followed by successful access | Brute Force: Password Guessing | T1110.001 | Multiple failed authentication attempts from `102.89.45.71` were followed by successful authentication to the affected account. |
+| Addition of a new authentication method | Account Manipulation: Additional Cloud Roles / Credentials | T1098 | A new authentication method was added after suspicious authentication. |
+| Creation of an inbox rule to redirect security notifications | Email Collection / Mailbox Manipulation | T1114 | An inbox rule named `RSS Feeds` was created to move security notification emails. |
+| External mailbox forwarding | Email Forwarding Rule | T1114.003 | External forwarding was configured to `finance.archive@protonmail.com`. |
+| Inbox and Sent Items accessed | Email Collection: Remote Email Collection | T1114.002 | Mailbox items were accessed following successful authentication. |
+| SharePoint document accessed | Data from Information Repositories | T1213 | `/Deals/Biggest_Enterprise_Deal.xlsx` was accessed. |
+| `Mail.Read` permission granted to an application | Account Access / Application Consent Abuse | T1098 | Delegated mailbox access was granted to `Cloud Sync Utility`. |
+| Account added to legacy remote-access group | Account Manipulation | T1098 | The affected identity was added to a remote-access group following compromise. |
+
+### ATT&CK Analysis
+
+The mapped techniques show that the observed activity progressed beyond initial unauthorized authentication.
+
+The attacker behavior represented in the synthetic telemetry included credential-based access, account modification, mailbox manipulation, application permission changes, access to organizational information, and mechanisms that could support continued access.
+
+Mapping the investigation to MITRE ATT&CK provides a standardized way to describe the observed adversary behavior and helps connect technical findings with detection engineering and incident-response activities.
+
+---
+
+## Lessons Learned
+
+This investigation demonstrated the importance of correlating multiple telemetry sources when investigating identity-based security incidents.
+
+Key lessons from the investigation include:
+
+- A geographic anomaly alone is not sufficient evidence of compromise.
+- Authentication failures should be analyzed together with subsequent successful authentication.
+- Successful authentication does not represent the end of an identity investigation; post-authentication activity must also be examined.
+- Audit logs can reveal persistence mechanisms, account modifications, mailbox manipulation, application consent, and sensitive resource access.
+- IP addresses can provide useful correlation points between authentication and audit telemetry.
+- Scope validation is necessary before concluding that an incident affected only one identity.
+- KQL provides an effective method for filtering, summarizing, correlating, and reconstructing security events.
+- Investigation findings should be clearly separated from recommended containment and remediation actions that were not actually executed in the lab.
+
+---
+
+## Conclusion
+
+This project demonstrated an end-to-end investigation of a simulated cloud identity compromise using Azure Data Explorer and Kusto Query Language.
+
+The investigation began with ingestion and validation of synthetic sign-in and audit telemetry. KQL was then used to establish authentication patterns, investigate failed sign-ins, identify suspicious infrastructure, reconstruct the authentication timeline, and correlate successful access with subsequent audit activity.
+
+The investigation identified `daniel.reeve@cloudora.io` as the affected identity and `102.89.45.71` as the primary suspicious source observed in the incident. Repeated authentication failures were followed by successful access and subsequent security-sensitive activity, including authentication method modification, mailbox manipulation, external forwarding, application consent, group membership modification, and access to potentially sensitive organizational information.
+
+Scope analysis found no additional successful Cloudora authentications from the investigated `102.89.*` infrastructure within the available sign-in telemetry.
+
+The project demonstrates practical skills in:
+
+- Azure Data Explorer
+- Kusto Query Language (KQL)
+- Cloud identity investigation
+- Authentication log analysis
+- Audit log analysis
+- Incident timeline reconstruction
+- Indicator correlation
+- Post-compromise investigation
+- Incident scoping
+- MITRE ATT&CK mapping
+- Incident response planning
+
+> **Project Note:** All identities, organizations, logs, and incident activity used in this project are synthetic and were created for cybersecurity training and portfolio demonstration purposes.
+
 
 
 
