@@ -249,7 +249,180 @@ This provided a baseline of the locations and IP addresses associated with the a
 
 The results showed sign-in activity associated with multiple locations, including London, Austin, Manchester, and Lagos. The Lagos activity originated from `102.89.45.71` and appeared less frequently than the account's established sign-in locations.
 
-At this stage, the geographic difference alone was not treated as proof of compromise. Instead, the source IP was identified for further authentication analysis to determine whether its behavior was consistent with unauthorized access.
+At this stage, the geographic difference alone was not treated as proof of compromise. Instead, the source IP was identified for further authentication analysis to determine whether its behavior was consistent with unauthorized access.### 11. Failed Authentication Analysis
+
+The investigation was expanded beyond a single user to identify IP addresses generating failed authentication attempts across the Cloudora environment.
+
+The following KQL query was used to summarize failed authentication activity:
+
+```kusto
+CloudoraSignIn_CL
+| where ResultType == "50126"
+| summarize Failures=count(), TargetedAccount=dcount(UserPrincipalName) by IPAddress, City, Country
+| order by Failures asc
+```
+
+This query grouped invalid username or password events by source IP address and geographic location while also counting the number of distinct accounts associated with each source.
+
+![Figure 11 - Failed Login Analysis](screenshots/Figure-11-Failed-Login-Analysis.png)
+
+**Figure 11 — Failed Authentication Analysis**
+
+The results showed failed authentication events originating from several IP addresses. Because authentication failures alone do not prove malicious activity, additional analysis was required to determine whether any source demonstrated a failure-to-success pattern indicative of possible account compromise.
+
+
+### 12. Suspicious IP Authentication Timeline
+
+After identifying `102.89.45.71` as an IP requiring further investigation, its authentication activity was examined chronologically.
+
+The following KQL query was used:
+
+```kusto
+CloudoraSignIn_CL
+| where IPAddress == "102.89.45.71"
+| project TimeGenerated, UserPrincipalName, AppDisplayName, IPAddress, City, Country, ResultType, ResultDescription
+| order by TimeGenerated asc
+```
+
+The chronological results revealed repeated failed authentication attempts followed by successful authentication events involving `daniel.reeve@cloudora.io`.
+
+![Figure 12 - Suspicious IP Authentication Timeline](screenshots/Figure-12-Suspicious-IP-Authentication-Timeline.png)
+
+**Figure 12 — Suspicious IP Authentication Timeline**
+
+The source IP generated multiple `50126` authentication failures before later producing successful `ResultType == 0` events. This failure-to-success transition significantly increased the likelihood that the activity represented unauthorized access and warranted deeper investigation.
+
+
+### 13. User Sign-In Location Baseline
+
+To place the suspicious activity in context, the account's authentication history was summarized by location and IP address.
+
+```kusto
+CloudoraSignIn_CL
+| where UserPrincipalName contains "daniel"
+| summarize SignIn=count(), FirstSeen=min(TimeGenerated), LastSeen=max(TimeGenerated) by City, Country, IPAddress
+| order by SignIn desc
+```
+
+This allowed the suspicious Lagos authentication activity to be compared with the account's other observed sign-in locations.
+
+![Figure 13 - User Sign-In Location Baseline](screenshots/Figure-13-User-SignIn-Location-Baseline.png)
+
+**Figure 13 — User Sign-In Location Baseline**
+
+The account showed authentication activity from London, Austin, Manchester, and Lagos. The Lagos activity from `102.89.45.71` was treated as an anomaly requiring investigation rather than as proof of compromise based solely on geographic location.
+
+
+### 14. Suspicious IP Sign-In Investigation
+
+The investigation then focused specifically on authentication events originating from `102.89.45.71` to determine the sequence and outcome of the sign-in attempts.
+
+```kusto
+CloudoraSignIn_CL
+| where IPAddress == "102.89.45.71"
+| project TimeGenerated, UserPrincipalName, AppDisplayName, IPAddress, City, Country, ResultType, ResultDescription
+| order by TimeGenerated asc
+```
+
+![Figure 14 - Suspicious IP Sign-In Investigation](screenshots/Figure-14-Suspicious-IP-SignIn-Investigation.png)
+
+**Figure 14 — Suspicious IP Sign-In Investigation**
+
+The timeline showed four failed authentication attempts followed by successful authentications for Daniel Reeve's account. The successful access following repeated credential failures provided stronger evidence of account compromise than geographic anomaly alone.
+
+
+### 15. Failed Sign-In Source Analysis
+
+To determine whether the suspicious behavior was part of a wider authentication pattern, failed credential events were compared across source IP addresses.
+
+```kusto
+CloudoraSignIn_CL
+| where ResultType == "50126"
+| summarize Failures=count(), TargetedAccount=dcount(UserPrincipalName) by IPAddress, City, Country
+| order by Failures asc
+```
+
+![Figure 15 - Failed Sign-In Source Analysis](screenshots/Figure-15-Failed-SignIn-Source-Analysis.png)
+
+**Figure 15 — Failed Sign-In Source Analysis**
+
+The analysis showed that `102.89.45.71` generated four failed authentication events against one observed account. Other IP addresses also generated authentication failures, demonstrating why failed logins alone were insufficient to classify the activity as an attack.
+
+The key differentiator was that the suspicious Lagos source was subsequently associated with successful authentication and security-sensitive audit activity.
+
+
+### 16. Failure-to-Success Authentication Pattern
+
+The suspicious IP range was summarized by authentication result and time to quantify the transition from unsuccessful attempts to successful access.
+
+```kusto
+CloudoraSignIn_CL
+| where IPAddress startswith "102.89."
+| summarize Attempt=count() by bin(TimeGenerated, 1d), ResultType
+```
+
+![Figure 16 - Suspicious IP Failure Success Pattern](screenshots/Figure-16-Suspicious-IP-Failure-Success-Pattern.png)
+
+**Figure 16 — Suspicious IP Failure-to-Success Pattern**
+
+The results identified four failed authentication events (`50126`) and four successful authentication events (`0`) associated with the suspicious source range.
+
+Combined with the chronological sign-in evidence, this established a clear failure-to-success pattern. The investigation therefore pivoted to the audit logs to determine what occurred after successful authentication.
+
+
+### 17. Post-Compromise Audit Investigation
+
+After identifying successful authentication from the suspicious infrastructure, the investigation pivoted from sign-in telemetry to the `CloudoraAudit_CL` dataset.
+
+The suspicious IP range was used as the correlation point:
+
+```kusto
+CloudoraAudit_CL
+| where IPAddress startswith "102.89."
+| project TimeGenerated, OperationName, InitiatedBy, TargetUserPrincipalName, IPAddress, Details
+| order by TimeGenerated asc
+```
+
+![Figure 17 - Post-Compromise Audit Timeline](screenshots/Figure-17-Post-Compromise-Audit-Timeline.png)
+
+**Figure 17 — Post-Compromise Audit Timeline**
+
+Audit correlation identified a sequence of security-sensitive actions after successful authentication, including:
+
+- Addition of a new authentication method to the affected account.
+- Creation of an inbox rule designed to move security notification emails.
+- Configuration of external email forwarding.
+- Access to Inbox and Sent Items.
+- Access to the SharePoint file `/Deals/Biggest_Enterprise_Deal.xlsx`.
+- Delegated `Mail.Read` consent granted to the application `Cloud Sync Utility`.
+- Addition of the affected account to a legacy remote-access group.
+- Access to executive deal correspondence.
+
+The correlation between the suspicious authentication source and these subsequent audit events provided strong evidence that the account had been compromised and used for unauthorized post-authentication activity.
+
+
+### 18. Compromise Scope Validation
+
+After confirming compromise of the affected account, the investigation assessed whether the suspicious IP range had successfully authenticated to additional Cloudora identities.
+
+The following KQL query searched all successful sign-ins originating from the suspicious range:
+
+```kusto
+CloudoraSignIn_CL
+| where IPAddress startswith "102.89." and ResultType == "0"
+| summarize by UserPrincipalName, IPAddress, TimeGenerated
+| order by TimeGenerated asc
+```
+
+![Figure 18 - Compromise Scope Validation](screenshots/Figure-18-Compromise-Scope-Validation.png)
+
+**Figure 18 — Compromise Scope Validation**
+
+Within the available sign-in telemetry, successful authentication from the investigated `102.89.*` range was associated with `daniel.reeve@cloudora.io`.
+
+No additional successfully authenticated Cloudora identities from this suspicious IP range were identified in the analyzed dataset.
+
+This helped establish the observed scope of the incident while avoiding the assumption that the absence of additional successful sign-ins from this IP range proves that no other compromise occurred through different infrastructure.
 
 
 
