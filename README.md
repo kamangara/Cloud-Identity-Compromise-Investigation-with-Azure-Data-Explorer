@@ -483,6 +483,72 @@ The timeline shows a progression from repeated authentication failures to succes
 The close temporal relationship between successful authentication from `102.89.45.71` and the subsequent audit events strengthens the assessment that the successful authentication represented unauthorized access rather than an isolated geographic anomaly.
 
 The post-authentication activity also indicates that the incident extended beyond initial account access to include account modification, mailbox manipulation, potential persistence mechanisms, application permission changes, and access to potentially sensitive business information.
+---
+
+## Containment, Remediation & Verification
+
+Following confirmation of the account compromise, the investigation moved into the incident-response phase.
+
+Azure Data Explorer was used to identify the affected identity, suspicious infrastructure, authentication timeline, post-compromise activity, and observed scope of the incident. Because the lab environment was designed primarily for log investigation, the following containment and remediation actions represent the recommended response that should be performed through the appropriate identity, messaging, application, and security administration tools.
+
+### Containment
+
+Immediate containment should focus on preventing continued attacker access while preserving relevant evidence.
+
+Recommended actions include:
+
+- **Disable or temporarily block the compromised account** `daniel.reeve@cloudora.io`.
+- **Revoke active sessions and refresh tokens** associated with the affected identity.
+- **Reset the account password** using a secure administrative process.
+- **Block the suspicious IP address** `102.89.45.71` where technically and operationally appropriate.
+- **Remove the unauthorized authentication method** added after the suspicious login.
+- **Remove the affected account from the legacy remote-access group** if the membership change was unauthorized.
+- **Disable external mailbox forwarding** configured during the incident.
+- **Remove the suspicious inbox rule** created to redirect security notifications.
+- **Revoke application consent** granted to `Cloud Sync Utility` and investigate the application before allowing further access.
+- Preserve relevant sign-in and audit telemetry for further investigation.
+
+### Remediation
+
+After immediate containment, remediation should address the changes introduced during the compromise and reduce the likelihood of recurrence.
+
+Recommended actions include:
+
+1. Review all authentication methods registered to the affected identity and retain only verified methods.
+2. Require strong MFA for the affected account and other high-value identities.
+3. Review Conditional Access policies for risky, anomalous, and geographically unusual authentication.
+4. Review mailbox forwarding rules and inbox rules for unauthorized modifications.
+5. Review OAuth and delegated application permissions for suspicious or unnecessary consent grants.
+6. Review privileged and remote-access group memberships.
+7. Investigate access to `/Deals/Biggest_Enterprise_Deal.xlsx` and determine the sensitivity and potential exposure of the information.
+8. Review mailbox activity to determine what messages or attachments may have been accessed.
+9. Search for indicators associated with the suspicious infrastructure across additional available security telemetry.
+10. Strengthen monitoring and alerting for authentication failures followed by successful access.
+
+### Verification
+
+After containment and remediation, verification should confirm that attacker access and persistence mechanisms have been removed.
+
+The security team should verify that:
+
+- The unauthorized authentication method no longer exists.
+- Existing attacker sessions and tokens have been revoked.
+- The compromised password has been replaced.
+- The malicious inbox rule has been removed.
+- External forwarding is disabled.
+- Suspicious application consent has been revoked.
+- Unauthorized group membership has been removed.
+- No additional successful authentication from the investigated suspicious infrastructure is occurring.
+- No further suspicious mailbox or file-access activity is observed.
+- The affected identity has returned to an expected authentication pattern.
+
+### Response Outcome
+
+The investigation provided sufficient evidence to identify the affected identity, reconstruct the authentication sequence, correlate post-compromise activity, and assess the observed scope of the incident.
+
+The recommended response follows the incident lifecycle from **containment → remediation → verification**, ensuring that immediate attacker access is addressed while also removing persistence mechanisms and validating that the environment has returned to an expected security state.
+
+> **Lab Limitation:** Containment and remediation actions were documented as recommended response procedures rather than executed against a production identity environment. Azure Data Explorer was used for log ingestion, querying, correlation, investigation, and validation of the available telemetry.
 
 
 
