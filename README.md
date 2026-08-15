@@ -44,4 +44,15 @@ The investigation was conducted to answer the following key security questions:
 
 8. **Develop response recommendations**  
    Recommend appropriate containment, remediation, and verification actions based on the investigation findings.
+   
+   ## Tools & Technologies Used
+
+| Tool / Technology | Purpose |
+|---|---|
+| **Microsoft Azure** | Cloud platform used to host the investigation environment. |
+| **Azure Data Explorer (ADX)** | Used to ingest, store, and analyze the Cloudora security logs. |
+| **Kusto Query Language (KQL)** | Used to query authentication and audit telemetry, filter suspicious events, correlate activity, and reconstruct the incident timeline. |
+| **Cloud Sign-In Logs** | Used to analyze authentication attempts, source IP addresses, geographic locations, applications, and authentication results. |
+| **Cloud Audit Logs** | Used to investigate account changes, mailbox activity, file access, application consent, and other post-compromise actions. |
+| **GitHub** | Used to document the investigation, KQL queries, evidence, findings, and response recommendations. |
 
