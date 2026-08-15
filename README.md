@@ -266,6 +266,7 @@ This query grouped invalid username or password events by source IP address and 
 
 ![Figure 11 - Failed Login Analysis](screenshots/Figure-11-Failed-Login-Analysis.png)
 
+
 **Figure 11 — Failed Authentication Analysis**
 
 The results showed failed authentication events originating from several IP addresses. Because authentication failures alone do not prove malicious activity, additional analysis was required to determine whether any source demonstrated a failure-to-success pattern indicative of possible account compromise.
@@ -415,6 +416,7 @@ CloudoraSignIn_CL
 ```
 
 ![Figure 18 - Compromise Scope Validation](screenshots/Figure-18-Compromise-Scope-Validation.png)
+
 
 **Figure 18 — Compromise Scope Validation**
 
