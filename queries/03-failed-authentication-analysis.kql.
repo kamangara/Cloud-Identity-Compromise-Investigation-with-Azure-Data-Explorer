@@ -1,0 +1,24 @@
+// Cloudora Identity Compromise Investigation
+// Query 03: Failed Authentication Analysis
+// Purpose: Identify failed sign-ins across the environment and determine whether activity targeted one or multiple accounts.
+
+// Analyze invalid username/password events
+CloudoraSignIn_CL
+| where ResultType == "50126"
+| summarize
+    Failures=count(),
+    TargetedAccounts=dcount(UserPrincipalName),
+    Users=make_set(UserPrincipalName)
+    by IPAddress, City, Country
+| order by Failures desc
+
+// Focus on the suspicious Nigerian IP
+CloudoraSignIn_CL
+| where IPAddress == "102.89.45.71"
+| summarize
+    TotalAttempts=count(),
+    FailedAttempts=countif(ResultType != "0"),
+    SuccessfulAttempts=countif(ResultType == "0"),
+    AccountsTargeted=dcount(UserPrincipalName),
+    FirstSeen=min(TimeGenerated),
+    LastSeen=max(TimeGenerated)
