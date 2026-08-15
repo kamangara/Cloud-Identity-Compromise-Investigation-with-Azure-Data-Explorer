@@ -427,7 +427,8 @@ Within the available sign-in telemetry, successful authentication from the inves
 
 No additional successfully authenticated Cloudora identities from this suspicious IP range were identified in the analyzed dataset.
 
-This helped establish the observed scope of the incident while avoiding the assumption that the absence of additional successful sign-ins from this IP range proves that no other compromise occurred through different infrastructure.---
+This helped establish the observed scope of the incident while avoiding the assumption that the absence of additional successful sign-ins from this IP range proves that no other compromise occurred through different infrastructure.
+---
 
 ## Key Investigation Findings
 
