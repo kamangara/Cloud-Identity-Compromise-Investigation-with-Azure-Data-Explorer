@@ -199,6 +199,15 @@ Azure Data Explorer confirmed that the audit dataset was successfully ingested i
 **Figure 07 — Audit Log Ingestion Success**
 
 The successful ingestion confirmed that the audit telemetry was available for KQL analysis and could be correlated with the sign-in logs during the investigation.
+### 8. Sign-In Dataset Validation
+
+Before beginning the security investigation, the sign-in dataset was queried to confirm that the records had been successfully ingested and were available for analysis.
+
+The following KQL query was executed:
+
+```kusto
+CloudoraSignIn_CL
+| count
 
 
 
